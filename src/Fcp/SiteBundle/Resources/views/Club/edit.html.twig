@@ -1,0 +1,30 @@
+{# empty Twig template #}
+{% extends '::base.html.twig' %}
+{% form_theme form 'FcpSiteBundle:Form:fields.html.twig' %}
+
+{% block body %}
+{{ parent() }}
+<div class="row">
+    <div class="seven columns">
+        <div class="medium default btn icon-left entypo icon-left-open">
+            <a href="{{ path('admin_club') }}">Terug</a>
+        </div>
+        <h3>Club bewerken</h3>
+        <form action="{{ path('admin_club_edit', {'id': id }) }}" method="post" {{ form_enctype(form) }}>
+            {{ form_widget(form) }}
+            <br>
+            <div class="medium info btn">
+                <input type="submit" />
+            </div>
+        </form>
+    </div>
+    <div class="push_one four columns nomobile">
+        <h3>Alle clubs</h3>
+        <ul>
+        {% for club in clubs %}
+            <li>{{ club.clubName }}</li>
+        {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}

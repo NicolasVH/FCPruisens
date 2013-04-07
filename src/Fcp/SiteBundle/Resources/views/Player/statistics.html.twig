@@ -1,0 +1,62 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+{{ parent() }}
+
+<div class="row statistics">
+        <h2>Statistieken</h2>
+        <p>Iedereen houdt van statistieken! Hier vind je ze allemaal.</p>
+        <div class="row">
+            <div class="six columns">
+                <h3>Topschutters competitie</h3>
+                <p>Een overzicht van alle doelpuntenmakers van wedstrijden binnen de {{ season.season }}.</p>
+                <ol class="topGoalScorers">
+                    {% for gs in seasonGoalScorers %}
+                        <li>{{ gs.firstName }} {{ gs.lastName }} - {{ gs.AmountScored }} doelpunten</li>
+                    {% endfor %}
+                </ol>
+            </div>
+            <div class="six columns">
+                <h3>Topschutters beker</h3>
+                <p>Een overzicht van alle doelpuntenmakers van bekerwedstrijden binnen de {{ cup.season }}.</p>
+                <ol class="topGoalScorers">
+                    {% for gs in cupGoalScorers %}
+                        <li>{{ gs.firstName }} {{ gs.lastName }} - {{ gs.AmountScored }} doelpunten</li>
+                    {% endfor %}
+                </ol>
+            </div>
+        </div>
+       {# <div class="row">
+            <div class="six columns yellow">
+                <h3>Geel competitie</h3>
+                <p>Een overzicht van alle gele kaaren van wedstrijden binnen de {{ season.season }}.</p>
+            </div>
+            <div class="six columns red">
+                <h3>Rood competitie</h3>
+                <p>Een overzicht van alle rode kaarten van bekerwedstrijden binnen de {{ cup.season }}.</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="six columns yellow">
+                <h3>Geel beker</h3>
+                <p>Een overzicht van alle gele kaarten van wedstrijden binnen de {{ season.season }}.</p>
+            </div>
+            <div class="six columns red">
+                <h3>Rood beker</h3>
+                <p>Een overzicht van alle rode kaarten van bekerwedstrijden binnen de {{ cup.season }}.</p>
+            </div>
+        </div> #}
+        <div class="row">
+            <div class="twelve columns center halloffame">
+                <h2>Topschutters all-time</h2>
+                <p>Een overzicht van alle doelpuntenmakers van alle wedstrijden binnen alle competities ooit gespeeld (vanaf seizoen 2012-2013).</p>
+                <ul class="topGoalScorers">
+                    {% for gs in hallOfFame %}
+                        <li>{{ gs.firstName }} {{ gs.lastName }} - {{ gs.AmountScored }} doelpunten</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+</div>
+
+{% endblock %}

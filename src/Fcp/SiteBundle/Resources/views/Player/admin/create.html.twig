@@ -1,0 +1,28 @@
+{% extends '::base.html.twig' %}
+{% form_theme form 'FcpSiteBundle:Form:fields.html.twig' %}
+
+{% block body -%}
+{{ parent() }}
+<div class="row">
+    <div class="eight columns">
+        <div class="medium default btn icon-left entypo icon-left-open">
+            <a href="{{ path('admin_player') }}">Terug</a>
+        </div>
+        <h3>Speler toevoegen</h3>
+        <form novalidate action="{{ path('admin_player_create') }}" method="post" {{ form_enctype(form) }}>
+            {{ form_widget(form) }}
+            <div class="medium info btn">
+                <button type="submit">Aanmaken</button>
+            </div>
+        </form>
+    </div>
+    <div class="four columns nomobile">
+        <h3>Alle spelers</h3>
+        <ul>
+        {% for player in players %}
+            <li>{{ player.firstName }} {{ player.lastName }}</li>
+        {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}

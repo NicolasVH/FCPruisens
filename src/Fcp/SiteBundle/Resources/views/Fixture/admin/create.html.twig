@@ -1,0 +1,86 @@
+{# empty Twig template #}
+{% extends '::base.html.twig' %}
+{% form_theme form 'FcpSiteBundle:Form:fields.html.twig' %}
+
+{% block body %}
+{{ parent() }}
+<div class="row">
+    <div class="eight columns">
+        <div class="medium default btn icon-left entypo icon-left-open">
+            <a href="{{ path('admin_fixture') }}">Terug</a>
+        </div>
+        <h3>Nieuwe wedstrijd toevoegen</h3>
+        <form novalidate action="{{ path('admin_fixture_create') }}" method="post" {{ form_enctype(form) }}>
+            {{ form_rest(form) }}
+            <ul class="goalScorers" data-prototype="{{  form_widget(form.goalScorers.vars.prototype)|e }}">
+                 {% for goalScorer in form.goalScorers %}
+                    <li>{{ form_row(goalScorer.player) }} </li>
+                    {#  <li>{{ form_row(goalScorer.fixture) } }</li> #}
+                    <li>{{ form_row(goalScorer.amountScored) }}</li>
+                {% endfor %}
+            </ul>
+            
+            <br>
+            <div class="medium info btn">
+                <input type="submit" />
+            </div>
+        </form>
+    </div>
+    <div class="four columns nomobile">
+        <h3>Alle wedstrijden</h3>
+        <ul>
+        {% for fixture in fixtures %}
+                <li>{{ fixture.homeTeam }} - {{ fixture.awayTeam }} <small>({{ fixture.scheduledDate|date('d-m-Y') }})</small></li>
+        {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}
+{% block javascripts %}
+{{ parent() }}
+<script type="text/javascript">
+    // Get the ul that holds the collection of tags
+    var collectionHolder = $('div#fcp_sitebundle_fixturetype_goalScorers');
+
+    // setup an "add a tag" link
+    var $addGoalScorerLink = $('<a href="#" class="add_goalscorer_link">Voeg doelpuntmaker toe</a>');
+    var $newLinkLi = $('<li></li>').append($addGoalScorerLink);
+
+    jQuery(document).ready(function() {
+        // add the "add a tag" anchor and li to the tags ul
+        collectionHolder.append($newLinkLi);
+
+        // count the current form inputs we have (e.g. 2), use that as the new
+        // index when inserting a new item (e.g. 2)
+        collectionHolder.data('index', collectionHolder.find(':input').length);
+
+        $addGoalScorerLink.on('click', function(e) {
+            // prevent the link from creating a "#" on the URL
+            e.preventDefault();
+
+            // add a new tag form (see next code block)
+            addGoalScorerForm(collectionHolder, $newLinkLi);
+        });
+});
+
+function addGoalScorerForm(collectionHolder, $newLinkLi) {
+    // Get the data-prototype explained earlier
+    var prototype = collectionHolder.data('prototype');
+
+    // get the new index
+    var index = collectionHolder.data('index');
+
+    // Replace '__name__' in the prototype's HTML to
+    // instead be a number based on how many items we have
+    var newForm = prototype.replace(/__name__/g, index);
+
+    // increase the index with one for the next item
+    collectionHolder.data('index', index + 1);
+
+    // Display the form in the page in an li, before the "Add a tag" link li
+    var $newFormLi = $('<li></li>').append(newForm);
+    $newLinkLi.before($newFormLi);
+}
+</script>
+ {{ tinymce_init() }}
+{% endblock %}

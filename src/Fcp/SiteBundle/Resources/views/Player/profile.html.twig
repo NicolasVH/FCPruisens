@@ -1,0 +1,60 @@
+{# empty Twig template #}
+{% extends '::base.html.twig' %}
+{% block submenu %}
+     {% if is_granted('ROLE_ADMIN') %}
+                <ul id="adminmenu">
+                    <li><a href={{ path('admin_club') }}>Alle spelers</a></li>
+                    <li><a href={{ path('admin_player') }}>Statistieken</a></li>
+                </ul>
+     {% endif %}
+{% endblock %}
+{% block body %}
+{{ parent() }}
+<div class="row">
+   <div class="two columns">
+        {% if previous %} <div class="small danger btn icon-left entypo icon-left-open-big"><a href="{{ path('player_profile', {'slug': previous.slug }) }}">Vorige</a></div> {% endif %}
+   </div>
+   <div class="eight columns">
+        <h2 class="center playertitle">{% if player.preferredNumber %}<i class="number">{{ player.preferredNumber }}</i>{% endif %} {{ player.firstName }}  {{ player.lastName }}</h2>
+   </div>
+   <div class="two columns" style="text-align: right">
+         {% if next %} <div class="small danger btn icon-left entypo icon-right-open-big"><a href="{{ path('player_profile', {'slug': next.slug }) }}">Volgende</a></div> {% endif %}
+   </div>
+   <div class="four columns">     
+        <ul class="playerinfo" style="text-align: right">
+            <li><h5 class="strong">Voornaam</h5>{{ player.firstName }}</li>
+            <li><h5 class="strong">Achternaam</h5>{{ player.lastName }}</li>
+            <li><h5 class="strong">Geboortedatum</h5>{% if player.birthday %}{{ player.birthday|date('m/d/Y') }}{% endif %}</li>
+            <li><h5 class="strong">Positie</h5>{% if player.preferredPosition %}{{ player.preferredPosition }}{% else %} n.v.t. {% endif %}</li>
+            <li><h5 class="strong">Functie</h5>{% if player.boardFunction %}{{ player.boardFunction }}{% else %} n.v.t. {% endif %}</li>
+        </ul>
+   </div>
+   <div class="four columns image rounded">
+       <img class="center" src="{{ asset(player.image) }}"/>
+   </div>
+   <div class="four columns nomargin">
+      <ul class="playerstats" style="text-align: left">
+            <li><h5 class="strong">Doelpunten competitie</h5>{% if stats.seasongoals %}{{ stats.seasongoals }}{% else %}0{% endif %}</li>
+            <li><h5 class="strong">Doelpunten beker</h5>{% if stats.cupgoals %}{{ stats.cupgoals }}{% else %}0{% endif %}</li>
+            <li><h5 class="strong">Gele kaarten</h5>{{ stats.yellowcarded }}</li>
+            <li><h5 class="strong">Rode kaarten</h5>{{ stats.redcarded }}</li>
+            <li><h5 class="strong">Doelpunten aller tijden</h5>{% if stats.allgoals %}{{ stats.allgoals }}{% else %}0{% endif %}</li>
+      </ul>
+   </div>
+</div>
+<div class="row">
+    <div class="twelve columns" style="padding: 10px">
+        {{ player.bioDescription }}
+    </div>
+</div>
+{% endblock %}
+{% block javascripts %}
+{{ parent() }}
+<script>
+     $('#menu li a').each(function() {
+        if($(this).text() === 'Spelers') {
+            $(this).parent().addClass('selected');
+        }; 
+      });
+</script>
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends '::base.html.twig' %}
+{% block body %}
+{{ parent() }}
+<div class="row">
+    <div class="twelve columns">
+        <div class="warning alert mobile">
+            Het administrator paneel is niet gebouwd om gebruikt te worden op kleine toestellen zoals een smartphone. Voor een optimale ervaring, beheer je de website best via een tablet of PC.
+        </div>
+        <h2>Clubs</h2>
+        <div style="float: right" class="medium danger btn"><a href="{{ path('admin_club_create') }}">Club toevoegen</a></div>
+        <p>In het club administatie paneel kan je nieuwe clubs toevoegen, bewerken en verwijderen. Gebruik de tool-icoontjes om de gewenste
+        actie uit te voeren.</p>
+        <table>
+            <thead>
+              <tr>
+                <th width="10%">ID</th>
+                <th width="50%">Clubnaam</th>
+                <th width="30%">Locatie</th>
+                <th width="35%">Tools</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for club in clubs %}
+                    <tr>
+                        <td>{{ club.id }}</td>
+                        <td>{{ club.clubName }}</td>
+                        <td>{{ club.defaultLocation }}</td>
+                        <td>
+                            <div clas="row">
+                                <div class="four columns">
+                                    <a href="{{ path('admin_club', {'id': club.id }) }}" title="Toon club"><i class="icon-eye"></i></a>
+                                </div>
+                                <div class="four columns">
+                                    <a href="{{ path('admin_club_edit', {'id': club.id }) }}" title="Bewerk club"><i class="icon-pencil"></i></a>
+                                </div>
+                                <div class="four columns">
+                                    <a style="cursor: pointer" title="Verwijder club"><i class="icon-trash" onclick="confirmDelete('{{ club.clubName }}', '{{ club.id }}')"></i></a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        function confirmDelete(clubName, clubId) {
+            if(confirm('Weet je zeker dat je ' + clubName + ' wilt verwijderen?')) {
+                $.ajax({
+                    url: "{{ path('admin_club_delete') }}",
+                    type: "POST",
+                    data: { "club_id" : clubId },
+                    success: function(data) {
+                       location.reload(true);
+                    }
+                });
+            }
+        }
+    </script>
+{% endblock %}

@@ -1,0 +1,37 @@
+{# empty Twig template #}
+{% extends '::base.html.twig' %}
+{% form_theme form 'FcpSiteBundle:Form:fields.html.twig' %}
+
+{% block body %}
+{{ parent() }}
+<div class="row">
+    <div class="eight columns">
+        <div class="medium default btn icon-left entypo icon-left-open">
+            <a href="{{ path('admin_competition') }}">Terug</a>
+        </div>
+        <h3>Nieuwe competitie toevoegen</h3>
+        <form novalidate action="{{ path('admin_competition_create') }}" method="post" {{ form_enctype(form) }}>
+            {{ form_widget(form) }}
+            <br>
+            <div class="medium info btn">
+                <input type="submit" />
+            </div>
+        </form>
+    </div>
+    <div class="four columns nomobile">
+        <h3>Alle competities</h3>
+        <ul>
+        {% for competition in competitions %}
+            <li>{{ competition.season }}</li>
+        {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}
+{% block javascripts %}
+{{ parent() }}
+<script>
+    $('select#fcp_sitebundle_competitiontype_clubs').css('width','200px');
+    $('select#fcp_sitebundle_competitiontype_clubs').css('height','200px');
+</script>
+{% endblock %}

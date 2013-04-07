@@ -1,0 +1,116 @@
+#SITE ROUTING
+
+fcp_site:
+    resource: "@FcpSiteBundle/Resources/config/routing.yml"
+    prefix:   /
+
+site:
+    path: /
+    defaults: {_controller: FcpSiteBundle:Home:Index}
+    
+logout:
+    path: /logout
+
+#ENTITY ROUTING
+
+##CLUB
+
+##PLAYER
+    
+player_index:
+    path: /spelers/
+    defaults: {_controller: FcpSiteBundle:Player:Index}
+      
+player_statistics:
+    path: /spelers/statistieken
+    defaults: {_controller: FcpSiteBundle:Player:Statistics}
+    
+player_profile:
+    path: /spelers/{slug}/
+    defaults: {_controller: FcpSiteBundle:Player:Profile}
+    
+##COMPETITION
+
+##FIXTURE
+
+fixture_index:
+    path: /wedstrijden/
+    defaults: {_controller: FcpSiteBundle:Fixture:Index}
+
+fixture_show:
+    path: /wedstrijden/{id}/
+    defaults: {_controller: FcpSiteBundle:Fixture:Show}
+
+#ADMIN ROUTING
+
+##CLUB
+    
+admin_club:
+    path: /admin/clubs/
+    defaults: {_controller: FcpSiteBundle:Club:Admin}
+
+admin_club_create:
+    path: /admin/clubs/aanmaken/
+    defaults: {_controller: FcpSiteBundle:Club:Create}
+
+admin_club_edit:
+    path: /admin/clubs/bewerken/{id}
+    defaults: {_controller: FcpSiteBundle:Club:Edit}
+    
+admin_club_delete:
+    path: /admin/clubs/verwijder
+    defaults: {_controller: FcpSiteBundle:Club:Delete}
+    
+##PLAYER
+    
+admin_player:
+    path: /admin/spelers/
+    defaults: {_controller: FcpSiteBundle:Player:Admin}
+    
+admin_player_create:
+    path: /admin/spelers/aanmaken/
+    defaults: {_controller: FcpSiteBundle:Player:Create}   
+    
+admin_player_edit:
+    path: /admin/spelers/bewerken/{id}
+    defaults: {_controller: FcpSiteBundle:Player:Edit}
+    
+admin_player_delete:
+    path: /admin/spelers/verwijder
+    defaults: {_controller: FcpSiteBundle:Player:Delete}
+    
+##COMPETITION
+
+admin_competition:
+    path: /admin/competities/
+    defaults: {_controller: FcpSiteBundle:Competition:Admin}
+    
+admin_competition_create:
+    path: /admin/competities/aanmaken/
+    defaults: {_controller: FcpSiteBundle:Competition:Create}   
+    
+admin_competition_edit:
+    path: /admin/competities/bewerken/{id}
+    defaults: {_controller: FcpSiteBundle:Competition:Edit}
+    
+admin_competition_delete:
+    path: /admin/competities/verwijder
+    defaults: {_controller: FcpSiteBundle:Competition:Delete}
+    
+##FIXTURE
+    
+admin_fixture:
+    path: /admin/wedstrijden/
+    defaults: {_controller: FcpSiteBundle:Fixture:Admin}
+    
+admin_fixture_create:
+    path: /admin/wedstrijden/aanmaken/
+    defaults: {_controller: FcpSiteBundle:Fixture:Create}   
+    
+admin_fixture_edit:
+    path: /admin/wedstrijden/bewerken/{id}
+    defaults: {_controller: FcpSiteBundle:Fixture:Edit}
+    
+admin_fixture_delete:
+    path: /admin/wedstrijden/verwijder
+    defaults: {_controller: FcpSiteBundle:Fixture:Delete}

@@ -1,0 +1,111 @@
+<?php
+
+namespace Fcp\SiteBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Fixture
+ *
+ * @ORM\Table(name="Fixture")
+ * @ORM\Entity
+ */
+class Fixture
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false, unique=true)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+      * @var integer
+     * 
+     * @ORM\OneToOne(targetEntity="Club")
+     * @ORM\JoinColumn(name="homeTeam_id", referencedColumnName="id", nullable=false)
+     */
+    private $homeTeam;
+
+    /**
+     * @var integer
+     * 
+     * @ORM\OneToOne(targetEntity="Club")
+     * @ORM\JoinColumn(name="awayTeam_id", referencedColumnName="id", nullable=false)
+     */
+    private $awayTeam;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="location", type="string", length=255)
+     */
+    private $location;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="scheduledDate", type="date")
+     */
+    private $scheduledDate;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Competition", inversedBy="fixtures")
+     * @ORM\JoinColumn(name="competition_id", referencedColumnName="id")
+     */
+    private $competition;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="homeScore", type="integer", length=2, nullable=true)
+     */
+    private $homeScore;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="awayScore", type="integer", length=2, nullable=true)
+     */
+    private $awayScore;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Goalscorer", mappedBy="fixture")
+     **/
+    private $goalScorers;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Player")
+     * @ORM\JoinTable(name="fixture_yellowCarded",
+     *      joinColumns={@ORM\JoinColumn(name="fixture_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="player_id", referencedColumnName="id", unique=true)}
+     *      )
+     **/
+    private $yellowCarded;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Player")
+     * @ORM\JoinTable(name="fixture_redCarded",
+     *      joinColumns={@ORM\JoinColumn(name="fixture_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="player_id", referencedColumnName="id", unique=true)}
+     *      )
+     **/
+    private $redCarded;
+    
+     /**
+     * @var string
+     *
+     * @ORM\Column(name="refereeName", type="string", length=160, nullable=true)
+     */
+    private $refereeName;
+    
+    /**
+     * @var string
+     * 
+     * @ORM\Column(name="reportArticle", type="text", nullable=true)
+     */
+    private $reportArticle;
+    
+}

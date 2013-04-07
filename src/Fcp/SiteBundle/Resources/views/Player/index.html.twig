@@ -1,0 +1,65 @@
+{% extends '::base.html.twig' %}
+{% block submenu %}
+     {% if is_granted('ROLE_ADMIN') %}
+                <ul id="adminmenu">
+                    <li><a href={{ path('admin_club') }}>Alle spelers</a></li>
+                    <li><a href={{ path('admin_player') }}>Statistieken</a></li>
+                </ul>
+     {% endif %}
+{% endblock %}
+{% block body %}
+{{ parent() }}
+
+<div class="row">
+    <h2>Spelers FC Pruisens</h2>
+    <div class="row">
+        <h3>Doelmannen</h3>
+        {% for player in players.keeper %}
+            <div class="three columns image rounded">
+                <a href="{{ path('player_profile', {'slug': player.slug }) }}"><img class="center" src="{{ asset(player.image) }}"/></a>
+                <div class="photocaption">
+                    {{ player.firstName }} {{ player.lastName }}
+                </div>
+            </div>
+
+        {% endfor %}
+    </div>
+    <div class="row">
+        <h3>Verdedigers</h3>
+        {% for player in players.defender %}
+            <div class="three columns image rounded">
+                <a href="{{ path('player_profile', {'slug': player.slug }) }}"><img class="center" src="{{ asset(player.image) }}"/></a>
+                <div class="photocaption">
+                    {{ player.firstName }} {{ player.lastName }}
+                </div>
+            </div>
+
+        {% endfor %}
+    </div>
+    <div class="row">
+        <h3>Middenvelder</h3>
+        {% for player in players.midfielder %}
+            <div class="three columns image rounded">
+                <a href="{{ path('player_profile', {'slug': player.slug }) }}"><img class="center" src="{{ asset(player.image) }}"/></a>
+                <div class="photocaption">
+                    {{ player.firstName }} {{ player.lastName }}
+                </div>
+            </div>
+
+        {% endfor %}
+    </div>
+    <div class="row">
+        <h3>Aanvallers</h3>
+        {% for player in players.attacker %}
+            <div class="three columns image rounded">
+                <a href="{{ path('player_profile', {'slug': player.slug }) }}"><img class="center" src="{{ asset(player.image) }}"/></a>
+                <div class="photocaption">
+                    {{ player.firstName }} {{ player.lastName }}
+                </div>
+            </div>
+
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

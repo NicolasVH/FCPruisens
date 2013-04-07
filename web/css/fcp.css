@@ -1,0 +1,342 @@
+/* 
+    Document   : fcp
+    Created on : 16-mrt-2013, 20:40:44
+    Author     : Nicolas Van Hoorde
+    Description:
+        FCPruisens.be specific CSS.
+*/
+
+/* General */
+
+.center {
+    text-align: center;
+}
+
+.strong {
+    font-weight: 600;
+}
+
+.nomargin {
+    margin: 0;
+}
+
+@media only screen and (max-width: 768px) { .mobile { display: block;} .nomobile { display: none;} }
+@media only screen and (min-width: 768px) { .mobile { display: none;} .nomobile { display: block;} }
+
+/* Player */
+
+.playertitle {
+    padding: 10px;
+    border-bottom: 1px solid lightgrey;
+    margin-bottom: 10px;
+}
+
+.photocaption {
+    display: block;
+    line-height: 2;
+    border-bottom: 1px solid lightgrey;
+    border-left: 1px solid lightgrey;
+    border-right: 1px solid lightgrey;
+    text-align: center;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.playerinfo li {
+    padding: 5px;
+    border-bottom: 1px solid lightgrey;
+}
+
+.playerstats {
+    padding-left: 15px;
+}
+
+.playerstats li {
+    padding: 5px;
+    border-bottom: 1px solid lightgrey;
+}
+
+.number {
+    background-color: #d53c42;
+    color: #f7f7f7;
+    padding: 0 5px 0 3px;
+    border-radius: 5px;
+}
+
+/* Statistics */
+
+.halloffame {
+  /* background-color: #393939;
+    color: #f7f7f7; */
+    border-top-left-radius: 10px;
+    -moz-border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    -moz-border-top-right-radius: 10px;
+     border-bottom-left-radius: 10px;
+    -moz-border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    -moz-border-bottom-right-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #393939;
+}
+
+.topGoalScorers li:first-child {
+    font-size: 22px;
+}
+
+.topGoalScorers li:nth-of-type(2) {
+    font-size: 20px;
+}
+
+.topGoalScorers li:nth-of-type(3) {
+    font-size: 18px;
+}
+
+.statistics .yellow {
+    border-top-left-radius: 10px;
+    -moz-border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    -moz-border-top-right-radius: 10px;
+     border-bottom-left-radius: 10px;
+    -moz-border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    -moz-border-bottom-right-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.statistics .red {
+    background-color: #b40a0a;
+    color: #f7f7f7;
+    border-top-left-radius: 10px;
+    -moz-border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    -moz-border-top-right-radius: 10px;
+     border-bottom-left-radius: 10px;
+    -moz-border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    -moz-border-bottom-right-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.statistics .red h3 {
+    color: #f7f7f7;
+}
+
+/* Fixtures */
+
+.competitionbar {
+    background-color: #393939;
+    border-top-left-radius: 10px;
+    -moz-border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    -moz-border-top-right-radius: 10px;
+}
+
+.competitionbar h4 {
+    color: #f7f7f7;
+}
+
+.infobar {
+    border-left: 1px solid #393939;
+    border-right: 1px solid #393939;
+    padding: 5px;
+    background-color: #d53c42;
+    color: #f7f7f7;
+    text-align: center;
+}
+
+.scorebar {
+    padding: 10px;
+    border-left: 1px solid #c1c1c1;
+    border-right: 1px solid #c1c1c1;
+    border-bottom: 1px solid #393939;
+    background-color: #f9f8f8;
+}
+
+.goals {
+    background-color: #d53c42;
+}
+
+.goals h1 {
+    color: #f7f7f7;
+    
+}
+
+.home {
+    padding-left: 9px;
+    padding-right: 3px;
+    border-radius: 5px;
+}
+
+.away {
+    padding-left: 12px;
+    border-radius: 5px;
+}
+
+.yellow {
+    background-color: #f3df00;
+    padding: 7px 5px;
+    display: inline-block;
+}
+
+.red {
+    background-color: red;
+    padding: 7px 5px;
+    display: inline-block;
+}
+
+/* Navigation */
+#menu {
+    height: 300px;
+    background-color: #b41f25;
+    border-bottom: 10px solid #1d1d1d;
+    margin-bottom: 10px;
+}
+
+#menu img {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    padding: 10px 10px 20px 10px;
+}
+
+#menu ul {
+    width: 100%;
+    vertical-align: middle;
+    margin: auto;
+    text-align: center;
+    color: #f7f7f7;
+    list-style-type: none;
+}
+
+#menu li {
+    display: inline;
+    padding: 10px;
+    font-size: 110%;
+    border-top-left-radius: 10px;
+    -moz-border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    -moz-border-top-right-radius: 10px;
+}
+
+#menu li:hover {
+    background-color: #1d1d1d;
+    color: #f7f7f7;
+    cursor: pointer;
+    padding-bottom: 20px;
+}
+
+#menu li.selected {
+    background-color: #1d1d1d;
+    color: #d53c42;
+    padding-bottom: 20px;
+}
+
+#menu li a {
+    color: #f7f7f7;
+}
+
+#adminmenu {
+    margin-top: -10px;
+    background-color: #1d1d1d;
+    height: 50px;
+    padding: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+#adminmenu ul {
+    color: white;
+    width: 100%;
+    vertical-align: middle;
+    margin: auto;
+    list-style-type: none;
+    margin-left: 30%;
+}
+
+#adminmenu li {
+    display: inline;
+    padding: 10px;
+    color: #f7f7f7;
+}
+
+#adminmenu li a {
+    color: #f7f7f7;
+}
+
+#adminmenu li a:hover {
+    color: #e6e6e6;
+}
+
+/* Footer */
+
+#footer {
+    width: 100%;
+    background-color: white;
+    margin-bottom: 10px;
+    border-top: 1px solid #c4c4c4;
+    opacity: 0.5;
+    padding-top: 5px;
+}
+
+/* Tables - From ZURB Foundation  */
+table {
+  background: white;
+  margin-bottom: 1.25em;
+  border: solid 1px #dddddd; }
+  table thead,
+  table tfoot {
+    background: whitesmoke;
+    font-weight: bold; }
+    table thead tr th,
+    table thead tr td,
+    table tfoot tr th,
+    table tfoot tr td {
+      padding: 0.5em 0.625em 0.625em;
+      font-size: 0.875em;
+      color: #222222;
+      text-align: left; }
+  table tr th,
+  table tr td {
+    padding: 0.5625em 0.625em;
+    font-size: 0.875em;
+    color: #222222; }
+  table tr.even, table tr.alt, table tr:nth-of-type(even) {
+    background: #f9f9f9; }
+  table thead tr th,
+  table tfoot tr th,
+  table tbody tr td,
+  table tr td,
+  table tfoot tr td {
+    display: table-cell;
+    line-height: 1.125em; }
+  
+  table tr td a {
+    display:block;
+    height:100%;
+    width:100%;
+    color: #222222;
+  }
+  
+  table tbody tr:hover td,
+  table tbody tr:hover td a {
+    background-color: #b41f25;
+    color: #f7f7f7;
+  }
+
+  .last {
+      border-right: solid 1px #dddddd;
+  }
+  
+  .report {
+      background-color: #b41f25;
+      color: #f7f7f7;
+      display: none;
+  }
+
+  /* Small devices */
+
+@media only screen and (max-width: 767px) { #menu li { font-size: 13px; padding: 7px; }}

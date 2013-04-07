@@ -1,0 +1,31 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+{{ parent() }}
+
+<div class="row">
+    <div class="twelve columns">
+        <h2>Wedstrijden</h2>
+        <p>Hier vind je een overzicht van alle wedstrijden.</p>
+        <table>
+            <thead>
+                <th width='200'>Type</th>
+                <th width='300'>Wedstrijd</th>
+                <th width='200'>Datum</th>
+                <th class="last" width='100'>Score</th>
+            </thead>
+            <tbody>
+                {% for fixture in fixtures %}
+                        <tr>
+                            <td><a href="{{ path('fixture_show', {'id': fixture.id }) }}" title="Toon wedstrijd">{{ fixture.competition.competitionType }}</a></td>
+                            <td><a href="{{ path('fixture_show', {'id': fixture.id }) }}" title="Toon wedstrijd">{{ fixture.homeTeam }} -  {{ fixture.awayTeam }}</a></td>
+                            <td><a href="{{ path('fixture_show', {'id': fixture.id }) }}" title="Toon wedstrijd">{{ fixture.scheduledDate|date('d-m-Y') }}</a></td>
+                            <td><a href="{{ path('fixture_show', {'id': fixture.id }) }}" title="Toon wedstrijd">{{ fixture.homeScore }} - {{ fixture.awayScore }}</a></td>
+                        </tr>
+                    
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

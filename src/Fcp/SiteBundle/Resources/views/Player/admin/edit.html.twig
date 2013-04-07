@@ -1,0 +1,30 @@
+{% extends '::base.html.twig' %}
+{% form_theme form 'FcpSiteBundle:Form:fields.html.twig' %}
+
+{% block body -%}
+{{ parent() }}
+<div class="row">
+    <div class="seven columns">
+        <div class="medium default btn icon-left entypo icon-left-open">
+            <a href="{{ path('admin_player') }}">Terug</a>
+        </div>
+        <h3>Speler bewerken</h3>
+        <form novalidate action="{{ path('admin_player_edit', { 'id': id }) }}" method="post" {{ form_enctype(form) }}>
+            {{ form_widget(form) }}
+            <p>
+                <div class="medium info btn">
+                    <input type="submit" />
+                </div>
+            </p>
+        </form>
+    </div>
+    <div class="push_one four columns nomobile">
+        <h3>Alle spelers</h3>
+        <ul>
+        {% for player in players %}
+            <li>{{ player.firstName }} {{ player.lastName }}</li>
+        {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}

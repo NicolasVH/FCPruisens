@@ -1,0 +1,269 @@
+<?php
+
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/**
+ * Description of Player
+ *
+ * @author Nicolas Van Hoorde
+ */
+
+namespace Fcp\SiteBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="Player")
+ */
+class Player {
+    
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer", unique=true, nullable=false)
+     * @ORM\GeneratedValue(strategy="AUTO") 
+     */
+    protected $id;
+    
+    /**
+     * @ORM\Column(type="string", length=100, nullable=false)
+     */
+    protected $firstName;
+    
+    /**
+    * @ORM\Column(type="string", length=100, nullable=false)
+    */
+    protected $lastName;
+    
+     /**
+     * @ORM\Column(type="date", nullable=true)
+     */
+    protected $birthday;
+    
+    /**
+    * @ORM\Column(type="string", length=100, nullable=true)
+    */
+    protected $bioDescription;
+    
+    /**
+    * @ORM\Column(type="integer", nullable=true)
+    */
+    protected $preferredNumber;
+    
+    /**
+    * @ORM\Column(type="string", length=100, nullable=true)
+    */
+    protected $preferredPosition;
+    
+    /**
+    * @ORM\Column(type="string", length=100, nullable=true)
+    */
+    protected $imagePath;
+    
+    /**
+    * @ORM\Column(type="string", length=100, nullable=true)
+    */
+    protected $boardFunction;
+    
+    /**
+    * @ORM\Column(type="string", length=100, nullable=false)
+    */
+    protected $slug;
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set firstName
+     *
+     * @param string $firstName
+     * @return Player
+     */
+    public function setFirstName($firstName)
+    {
+        $this->firstName = $firstName;
+    
+        return $this;
+    }
+
+    /**
+     * Get firstName
+     *
+     * @return string 
+     */
+    public function getFirstName()
+    {
+        return $this->firstName;
+    }
+
+    /**
+     * Set lastName
+     *
+     * @param string $lastName
+     * @return Player
+     */
+    public function setLastName($lastName)
+    {
+        $this->lastName = $lastName;
+    
+        return $this;
+    }
+
+    /**
+     * Get lastName
+     *
+     * @return string 
+     */
+    public function getLastName()
+    {
+        return $this->lastName;
+    }
+
+    /**
+     * Set birthday
+     *
+     * @param \DateTime $birthday
+     * @return Player
+     */
+    public function setBirthday($birthday)
+    {
+        $this->birthday = $birthday;
+    
+        return $this;
+    }
+
+    /**
+     * Get birthday
+     *
+     * @return \DateTime 
+     */
+    public function getBirthday()
+    {
+        return $this->birthday;
+    }
+
+    /**
+     * Set bioDescription
+     *
+     * @param string $bioDescription
+     * @return Player
+     */
+    public function setBioDescription($bioDescription)
+    {
+        $this->bioDescription = $bioDescription;
+    
+        return $this;
+    }
+
+    /**
+     * Get bioDescription
+     *
+     * @return string 
+     */
+    public function getBioDescription()
+    {
+        return $this->bioDescription;
+    }
+
+    /**
+     * Set preferredNumber
+     *
+     * @param integer $preferredNumber
+     * @return Player
+     */
+    public function setPreferredNumber($preferredNumber)
+    {
+        $this->preferredNumber = $preferredNumber;
+    
+        return $this;
+    }
+
+    /**
+     * Get preferredNumber
+     *
+     * @return integer 
+     */
+    public function getPreferredNumber()
+    {
+        return $this->preferredNumber;
+    }
+
+    /**
+     * Set preferredPosition
+     *
+     * @param string $preferredPosition
+     * @return Player
+     */
+    public function setPreferredPosition($preferredPosition)
+    {
+        $this->preferredPosition = $preferredPosition;
+    
+        return $this;
+    }
+
+    /**
+     * Get preferredPosition
+     *
+     * @return string 
+     */
+    public function getPreferredPosition()
+    {
+        return $this->preferredPosition;
+    }
+
+    /**
+     * Set imagePath
+     *
+     * @param string $imagePath
+     * @return Player
+     */
+    public function setImagePath($imagePath)
+    {
+        $this->imagePath = $imagePath;
+    
+        return $this;
+    }
+
+    /**
+     * Get imagePath
+     *
+     * @return string 
+     */
+    public function getImagePath()
+    {
+        return $this->imagePath;
+    }
+
+    /**
+     * Set boardFunction
+     *
+     * @param string $boardFunction
+     * @return Player
+     */
+    public function setBoardFunction($boardFunction)
+    {
+        $this->boardFunction = $boardFunction;
+    
+        return $this;
+    }
+
+    /**
+     * Get boardFunction
+     *
+     * @return string 
+     */
+    public function getBoardFunction()
+    {
+        return $this->boardFunction;
+    }
+}

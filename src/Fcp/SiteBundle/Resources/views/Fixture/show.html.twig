@@ -1,0 +1,89 @@
+{# empty Twig template #}
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+{{ parent() }}
+<div class="row">
+    <div class="row competitionbar">
+        <div class="twelve columns center">
+            <h4>{{ fixture.competition.season }}</h4>
+        </div>
+    </div>
+    <div class="row infobar">
+        <div class="push_one three columns">
+            {{ fixture.location }}
+        </div>
+        <div class="push_one three columns" style="margin-left: 55px;">
+            {{ fixture.scheduledDate|date('d-m-Y H:i') }}
+        </div>
+        <div class="push_one three columns">
+            Ref: {{ fixture.refereeName }}
+        </div>
+    </div>
+    <div class="row scorebar">
+        <div class="five columns">
+            <h2 class="nomobile">{{ fixture.homeTeam }}</h2>
+            <h2 class="mobile">{{ fixture.homeTeam }} - {{ fixture.homeScore }}</h2>
+            {% if fixture.homeTeam.id == 1 %}
+                <ul>
+                {% for gs in fixture.goalScorers %}
+                    <li> {{ gs.player.firstName }} {{ gs.player.lastName }} ({{ gs.amountScored }}) </li>
+                {% endfor %}
+                {% for yc in fixture.yellowCarded %}
+                    <li> {{ yc.firstName }} {{ yc.lastName }} <div class="yellow"></div></li>
+                {% endfor %}
+                {% for rc in fixture.redCarded %}
+                    <li> {{ rc.firstName }} {{ rc.lastName }} <div class="red"></div></li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+        <div class="one columns goals home nomobile">
+            <h1>{{ fixture.homeScore }}</h1>
+        </div>
+        <div class="one columns goals away nomobile">
+            <h1>{{ fixture.awayScore }}</h1>
+        </div>
+        <div class="push_two three columns">
+            <h2 class="nomobile">{{ fixture.awayTeam }}</h2>
+            <h2 class="mobile">{{ fixture.awayTeam }} - {{ fixture.awayScore }}</h2>
+            {% if fixture.awayTeam.id == 1 %}
+                <ul>
+                {% for gs in fixture.goalScorers %}
+                    <li> {{ gs.player.firstName }} {{ gs.player.lastName }} ({{ gs.amountScored }}) </li>
+                {% endfor %}
+                {% for yc in fixture.yellowCarded %}
+                        <li> {{ yc.firstName }} {{ yc.lastName }} <div class="yellow"></div></li>
+                {% endfor %}
+                {% for rc in fixture.redCarded %}
+                    <li> {{ rc.firstName }} {{ rc.lastName }} <div class="red"></div></li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="eight columns">
+        <h3>Wedstrijdverslag</h3>
+        {{ fixture.reportArticle|raw }}
+    </div>
+    <div class="four columns">
+        <h3>Klassement</h3>
+        <ol>
+            <li>Baskuul - 48ptn.</li>
+            <li>FC Pruisens - 45ptn.</li>
+            <li>Rode Duivels - 48ptn.</li>
+            <li>Olympus - 48ptn.</li>
+            <li>Mikado - 48ptn.</li>
+            <li>Jong Timarcha - 48ptn.</li>
+            <li>FC Ronkenburg - 48ptn.</li>
+            <li>Blitz Boys - 48ptn.</li>
+            <li>Golden Boys - 48ptn.</li>
+            <li>White Boys - 48ptn.</li>
+            <li>Préféréé - 48ptn.</li>
+        </ol>
+    </div>
+</div>
+{% endblock %}

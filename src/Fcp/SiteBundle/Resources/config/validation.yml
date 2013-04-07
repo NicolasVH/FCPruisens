@@ -1,0 +1,17 @@
+Fcp\SiteBundle\Entity\Club:
+    properties:
+        clubName:
+            - NotBlank: { message: Je moet een clubnaam ingeven. }
+         
+Fcp\SiteBundle\Entity\Player:
+    properties:
+        firstName:
+            - NotBlank: { message: Je moet een voornaam ingeven. }
+        lastName:
+            - NotBlank: { message: Je moet een achternaam ingeven. }
+        preferredNumber:
+            - Range:
+                min: 1
+                max: 99
+                minMessage: Een rugnummer moet positief zijn!
+                maxMessage: Een rugnummer kan niet groter dan 99 zijn!

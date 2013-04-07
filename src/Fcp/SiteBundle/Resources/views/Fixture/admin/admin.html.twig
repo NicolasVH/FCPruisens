@@ -1,0 +1,73 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+{{ parent() }}
+<div class="row">
+    <div class="twelve columns">
+        <div class="warning alert mobile">
+            Het administrator paneel is niet gebouwd om gebruikt te worden op kleine toestellen zoals een smartphone. Voor een optimale ervaring, beheer je de website best via een tablet of PC.
+        </div>
+        <h2>Wedstrijden</h2>
+        <div style="float: right" class="medium danger btn"><a href="{{ path('admin_fixture_create') }}">Wedstrijd toevoegen</a></div>
+        <p>In het wedstrijd administatie paneel kan je nieuwe wedstrijden toevoegen, bewerken en verwijderen. Gebruik de tool-icoontjes om de gewenste
+        actie uit te voeren.</p>
+        <table class="records_list">
+            <thead>
+                <tr>
+                    <th width="50">ID</th>
+                    <th width="120">Thuisploeg</th>
+                    <th width="120">Uitploeg</th>
+                    <th width="170">Locatie</th>
+                    <th>Datum</th>
+                    <th>Score</th>
+                    <th>Scheidsrechter</th>
+                    <th>Verslag</th>
+                    <th>Tools</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for fixture in fixtures %}
+                <tr>
+                    <td>{{ fixture.id }}</td>
+                    <td>{{ fixture.homeTeam }}</td>
+                    <td>{{ fixture.awayTeam }}</td>
+                    <td>{{ fixture.location }}</td>
+                    <td>{% if fixture.scheduledDate %}{{ fixture.scheduledDate|date('d-m-Y H:i') }}{% endif %}</td>
+                    <td>{{ fixture.homeScore }} - {{ fixture.awayScore }}</td>
+                    <td>{{ fixture.refereeName }}</td>
+                    <td>{% if fixture.reportArticle is defined %} {{ 'V' }} {% else %} {{ 'X' }} {% endif %}</td>
+                    <td>
+                        <div clas="row">
+                            <div class="four columns">
+                                <a href="{{ path('fixture_show', {'id': fixture.id }) }}" title="Toon wedstrijd"><i class="icon-eye"></i></a>
+                            </div>
+                            <div class="four columns">
+                                <a href="{{ path('admin_fixture_edit', {'id': fixture.id }) }}" title="Bewerk wedstrijd"><i class="icon-pencil"></i></a>
+                            </div>
+                            <div class="four columns">
+                                <a style="cursor: pointer" title="Verwijder wedstrijd"><i class="icon-trash" onclick="confirmDelete('{{ fixture.homeTeam }} - {{ fixture.awayTeam }}', '{{ fixture.id }}')"></i></a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        function confirmDelete(fixtureName, fixtureId) {
+            if(confirm('Weet je zeker dat je ' + fixtureName + ' wilt verwijderen?')) {
+                $.ajax({
+                    url: "{{ path('admin_fixture_delete') }}",
+                    type: "POST",
+                    data: { "fixture_id" : fixtureId },
+                    success: function(data) {
+                       location.reload(true);
+                    }
+                });
+            }
+        }
+    </script>
+{% endblock %}

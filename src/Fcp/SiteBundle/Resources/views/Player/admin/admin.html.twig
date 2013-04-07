@@ -1,0 +1,73 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+{{ parent() }}
+<div class="row">
+    <div class="twelve columns">
+        <div class="warning alert mobile">
+            Het administrator paneel is niet gebouwd om gebruikt te worden op kleine toestellen zoals een smartphone. Voor een optimale ervaring, beheer je de website best via een tablet of PC.
+        </div>
+        <h2>Spelers</h2>
+        <div style="float: right" class="medium danger btn"><a href="{{ path('admin_player_create') }}">Speler toevoegen</a></div>
+        <p>In het speler administatie paneel kan je nieuwe spelers toevoegen, bewerken en verwijderen. Gebruik de tool-icoontjes om de gewenste
+        actie uit te voeren.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th width=100>Id</th>
+                    <th width=150>Voornaam</th>
+                    <th width=150>Achternaam</th>
+                    <th>Geboortedatum</th>
+                    <th>Nummer</th>
+                    <th>Positie</th>
+                    <th width=150>Functie</th>
+                    <th>Tools</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for player in players %}
+                <tr>
+                    <td>{{ player.id }}</td>
+                    <td>{{ player.firstName }}</td>
+                    <td>{{ player.lastName }}</td>
+                    <td>{% if player.birthday %}{{ player.birthday|date('m/d/Y') }}{% endif %}</td>
+                    <td>{{ player.preferredNumber }}</td>
+                    <td>{{ player.preferredPosition }}</td>
+                    <td>{{ player.boardFunction }}</td>
+                    <td>
+                        <div clas="row">
+                            <div class="four columns">
+                                <a href="{{ path('player_profile', {'slug': player.slug }) }}" title="Toon speler"><i class="icon-eye"></i></a>
+                            </div>
+                            <div class="four columns">
+                                <a href="{{ path('admin_player_edit', {'id': player.id }) }}" title="Bewerk speler"><i class="icon-pencil"></i></a>
+                            </div>
+                            <div class="four columns">
+                                <a style="cursor: pointer" title="Verwijder speler"><i class="icon-trash" onclick="confirmDelete('{{ player.firstName }} {{ player.lastName }}', '{{ player.id }}')"></i></a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        function confirmDelete(playerName, playerId) {
+            if(confirm('Weet je zeker dat je ' + playerName + ' wilt verwijderen?')) {
+                $.ajax({
+                    url: "{{ path('admin_player_delete') }}",
+                    type: "POST",
+                    data: { "player_id" : playerId },
+                    success: function(data) {
+                       location.reload(true);
+                    }
+                });
+            }
+        }
+    </script>
+{% endblock %}
